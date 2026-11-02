@@ -112,6 +112,23 @@ html[lang="ru"] .stat-figure span{white-space:normal}
   }
 })();
 </script>
+<style>
+.waitlist-copy{max-width:390px;width:100%}
+.signup-form{display:grid;gap:12px;position:relative}
+.signup-label{font-size:14px}
+.signup-form input[type="email"]{width:100%;min-width:0;min-height:56px;padding:15px 20px;background:transparent;border:1px solid #9e978c;border-radius:100px;color:var(--ink);font-size:16px;caret-color:var(--ink)}
+.signup-form input[type="email"]::placeholder{color:var(--muted);opacity:1}
+.signup-consent{display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6;margin-block:5px 8px;cursor:pointer}
+.signup-consent input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--ink)}
+.signup-consent a{text-decoration:underline;text-underline-offset:3px}
+.signup-submit{width:100%;justify-content:space-between}
+.signup-submit:disabled{opacity:.65;cursor:wait}
+.waitlist-copy>.signup-message{font-size:14px;line-height:1.65;margin:16px 0 0;color:var(--ink)}
+.signup-message:empty{margin:0!important}
+.signup-message[data-state="error"]{color:#8c3526}
+.signup-form [aria-invalid="true"]{outline:2px solid #8c3526;outline-offset:3px}
+.signup-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style>
 <style>html[lang="ru"] .stat>.source{border-top:0;margin-bottom:8px}html[lang="ru"] .stat>.source>summary{padding-top:0;min-height:44px}html[lang="ru"] .stat>.source[open]{margin-bottom:24px}</style>
 </head>
 <body id="top">
@@ -136,12 +153,19 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 <section class="shell section" id="impact" aria-labelledby="impact-title"><div class="impact"><div><h2 id="impact-title">Перемены<br>за пределами экрана.</h2><p class="lead">Меньше времени онлайн — больше пространства для жизни. Вот что показало рандомизированное исследование, в котором участникам блокировали мобильный интернет.</p><p class="evidence-context">Независимое исследование.<br>Это не результаты использования Velty.</p><a class="research-link" href="https://doi.org/10.1093/pnasnexus/pgaf017" target="_blank" rel="noopener noreferrer">PNAS Nexus · 2025<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div><div class="research-results"><div class="metric"><span class="metric-value">153<span>минуты в день</span></span><div><h3>Меньше экранного времени</h3><p>Среднее экранное время сократилось с 314 до 161 минуты в день у участников экспериментальной группы с полными данными.</p></div></div><div class="metric"><span class="metric-value metric-percent">91%</span><div><h3>Улучшение хотя бы по одному показателю</h3><p>Авторы сообщают об улучшении психического здоровья, субъективного благополучия или устойчивого внимания.</p></div></div><div class="metric"><span class="metric-value">2<span>недели</span></span><div><h3>Перерыв от мобильного интернета</h3><p>Звонки и SMS оставались доступны. Выходить в интернет с других устройств разрешалось.</p></div></div><details class="research-method"><summary>Подробности и ограничения исследования<span class="plus" aria-hidden="true"></span></summary><div><p>Castelo и соавт., PNAS Nexus 4(2), pgaf017 (2025). В исследование добровольно записались 467 пользователей iPhone; 313 прошли все опросы; 119 сохраняли блокировку не менее 10 из 14 дней. Данные об экранном времени приведены для 92 участников экспериментальной группы, предоставивших все скриншоты. После эксперимента экранное время частично выросло. Результаты нельзя автоматически переносить на каждого пользователя или на Velty.</p></div></details></div></div></section>
 <!-- Temporarily hidden until verified customer reviews are ready. -->
 <section class="shell section voices" id="voices" aria-labelledby="voices-title" hidden><div class="section-heading"><h2 id="voices-title">Реальные люди.<br>Личный опыт.</h2><p>Истории пользователей, опубликованные с их согласия.<br>Здесь появятся настоящие отзывы.</p></div><div class="testimonials-grid"><article class="testimonial-card" aria-label="Место для отзыва пользователя"><span class="testimonial-tag">Место для отзыва</span><p class="testimonial-prompt">Личный опыт.<br>Своими словами.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Имя пользователя</p><span>Продукт · добавим позже</span></div></div></article><article class="testimonial-card" aria-label="Место для отзыва пользователя"><span class="testimonial-tag">Место для отзыва</span><p class="testimonial-prompt">Личный опыт.<br>Своими словами.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Имя пользователя</p><span>Продукт · добавим позже</span></div></div></article><article class="testimonial-card" aria-label="Место для отзыва пользователя"><span class="testimonial-tag">Место для отзыва</span><p class="testimonial-prompt">Личный опыт.<br>Своими словами.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Имя пользователя</p><span>Продукт · добавим позже</span></div></div></article></div></section>
-<section class="shell waitlist" id="waitlist" aria-labelledby="waitlist-title"><h2 id="waitlist-title">Больше пространства<br>для важного.</h2><div class="waitlist-copy"><p>Вступите в лист ожидания, чтобы узнать о запуске и появлении продуктов в продаже.</p><a class="btn btn-solid waitlist-link" id="waitlist-link" hidden>В лист ожидания<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a><div class="waitlist-status" id="waitlist-status" role="status">Запись в лист ожидания скоро откроется</div><p class="waitlist-note subtle" id="waitlist-note">Ссылка на регистрацию появится здесь.</p></div></section>
+<section class="shell waitlist" id="waitlist" aria-labelledby="waitlist-title"><h2 id="waitlist-title">Больше пространства<br>для важного.</h2><div class="waitlist-copy"><p>Вступите в лист ожидания, чтобы узнать о запуске и появлении продуктов в продаже.</p><form id="waitlist-form" class="signup-form" novalidate aria-describedby="signup-status">
+<label class="signup-label" for="signup-email">Ваш email</label>
+<input id="signup-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" maxlength="254" required aria-describedby="signup-status">
+<div class="signup-trap" aria-hidden="true"><label for="signup-website">Website</label><input id="signup-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<label class="signup-consent"><input name="consent" type="checkbox" required aria-describedby="signup-status"><span>Я согласен получать письма о запуске и продуктах Velty. <a href="privacy.html#waitlist" target="_blank" rel="noopener">Политика конфиденциальности</a></span></label>
+<button class="btn btn-solid signup-submit" type="submit">В лист ожидания<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
+</form>
+<p class="signup-message" id="signup-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<noscript><p class="small">Включите JavaScript, чтобы записаться в лист ожидания, или напишите на <a href="mailto:hello@velter.co">hello@velter.co</a>.</p></noscript></div></section>
 </main>
 <footer class="footer"><div class="shell"><div class="footer-top"><a href="#top" class="wordmark" aria-label="Velty — на главную">velty</a><nav class="footer-links" aria-label="Навигация в подвале"><a href="#attention">Зачем Velty</a><a href="#products">Продукты</a><a href="#waitlist" data-waitlist>В лист ожидания</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Velty. Пространство для важного.</span><a class="top-link" href="#top">Наверх<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div></div></footer>
 <script>
-// Set the real waitlist URL here. No personal data is collected by this preview.
-const VELTY_CONFIG = { waitlistUrl: '' };
+const VELTY_CONFIG = { subscribeUrl: 'https://syndesign.ru/velty-api/subscribe' };
 const navShell = document.querySelector('.nav-shell');
 const menuToggle = document.querySelector('.menu-toggle');
 function closeMenu() { navShell.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); menuToggle.setAttribute('aria-label','Открыть меню'); }
@@ -151,8 +175,76 @@ document.addEventListener('keydown', event => { if(event.key === 'Escape' && nav
 document.addEventListener('click', event => { if (!navShell.contains(event.target)) closeMenu(); });
 const desktop = matchMedia('(min-width:1001px)');
 desktop.addEventListener('change', closeMenu);
-// Only activate signup when a valid HTTPS destination has been supplied.
-if (VELTY_CONFIG.waitlistUrl) { try { const url = new URL(VELTY_CONFIG.waitlistUrl); if(url.protocol !== 'https:') throw new Error('HTTPS URL required'); document.querySelectorAll('[data-waitlist]').forEach(a => a.href = url.href); const cta = document.getElementById('waitlist-link'); cta.href = url.href; cta.hidden = false; document.getElementById('waitlist-status').hidden = true; document.getElementById('waitlist-note').textContent = 'Перейти к регистрации в листе ожидания Velty.'; } catch { console.warn('The waitlist URL must be a valid HTTPS address.'); } }
+// A success state is shown only after the server has persisted the address.
+const signupForm = document.getElementById('waitlist-form');
+const signupStatus = document.getElementById('signup-status');
+const signupButton = signupForm.querySelector('button[type="submit"]');
+const signupEmail = signupForm.elements.email;
+const signupConsent = signupForm.elements.consent;
+const signupCopy = {
+  invalid: 'Укажите корректный email, например name@example.com.',
+  consent: 'Для записи в лист ожидания нужно согласие получать новости Velty.',
+  sending: 'Сохраняем ваш email…',
+  success: 'Вы в списке! Напишем, когда появятся новости о запуске.',
+  limited: 'Слишком много попыток. Попробуйте ещё раз через 10 минут.',
+  error: 'Не удалось сохранить email. Проверьте соединение и попробуйте ещё раз.'
+};
+let signupSource = 'waitlist';
+document.querySelectorAll('[data-waitlist]').forEach(link => link.addEventListener('click', () => {
+  signupSource = link.closest('.product')?.id || (link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'waitlist');
+}));
+function signupMessage(message, error = false) {
+  signupStatus.textContent = message;
+  signupStatus.dataset.state = error ? 'error' : 'status';
+}
+signupForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (signupButton.disabled) return;
+  signupEmail.value = signupEmail.value.trim();
+  signupEmail.removeAttribute('aria-invalid');
+  signupConsent.removeAttribute('aria-invalid');
+  if (!signupEmail.validity.valid) {
+    signupMessage(signupCopy.invalid, true);
+    signupEmail.setAttribute('aria-invalid', 'true');
+    signupEmail.focus();
+    return;
+  }
+  if (!signupConsent.checked) {
+    signupMessage(signupCopy.consent, true);
+    signupConsent.setAttribute('aria-invalid', 'true');
+    signupConsent.focus();
+    return;
+  }
+  signupButton.disabled = true;
+  signupForm.setAttribute('aria-busy', 'true');
+  signupMessage(signupCopy.sending);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(VELTY_CONFIG.subscribeUrl, {
+      method: 'POST', credentials: 'omit', signal: controller.signal,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: signupEmail.value, consent: true, locale: document.documentElement.lang,
+        source: signupSource, website: signupForm.elements.website.value })
+    });
+    const result = await response.json();
+    if (!response.ok || result.ok !== true) {
+      signupMessage(response.status === 429 ? signupCopy.limited : result.error === 'invalid_email' ? signupCopy.invalid : signupCopy.error, true);
+      if (result.error === 'invalid_email') { signupEmail.setAttribute('aria-invalid', 'true'); signupEmail.focus(); }
+      return;
+    }
+    signupMessage(signupCopy.success);
+    signupStatus.tabIndex = -1;
+    signupStatus.focus({ preventScroll: true });
+    signupForm.hidden = true;
+  } catch {
+    signupMessage(signupCopy.error, true);
+  } finally {
+    clearTimeout(timeout);
+    signupButton.disabled = false;
+    signupForm.removeAttribute('aria-busy');
+  }
+});
 document.getElementById('year').textContent = new Date().getFullYear();
 // Keep the current section when changing language; normal links also work without JS.
 function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { const destination = new URL(link.href); destination.searchParams.set('lang', link.hreflang); destination.hash = location.hash; link.href = destination.href; }); }

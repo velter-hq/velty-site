@@ -112,6 +112,23 @@ html[lang="ru"] .stat-figure span{white-space:normal}
   }
 })();
 </script>
+<style>
+.waitlist-copy{max-width:390px;width:100%}
+.signup-form{display:grid;gap:12px;position:relative}
+.signup-label{font-size:14px}
+.signup-form input[type="email"]{width:100%;min-width:0;min-height:56px;padding:15px 20px;background:transparent;border:1px solid #9e978c;border-radius:100px;color:var(--ink);font-size:16px;caret-color:var(--ink)}
+.signup-form input[type="email"]::placeholder{color:var(--muted);opacity:1}
+.signup-consent{display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6;margin-block:5px 8px;cursor:pointer}
+.signup-consent input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--ink)}
+.signup-consent a{text-decoration:underline;text-underline-offset:3px}
+.signup-submit{width:100%;justify-content:space-between}
+.signup-submit:disabled{opacity:.65;cursor:wait}
+.waitlist-copy>.signup-message{font-size:14px;line-height:1.65;margin:16px 0 0;color:var(--ink)}
+.signup-message:empty{margin:0!important}
+.signup-message[data-state="error"]{color:#8c3526}
+.signup-form [aria-invalid="true"]{outline:2px solid #8c3526;outline-offset:3px}
+.signup-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
@@ -135,12 +152,19 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 <section class="shell section" id="impact" aria-labelledby="impact-title"><div class="impact"><div><h2 id="impact-title">Impact, beyond<br>the screen.</h2><p class="lead">Less connection can make more room for life. Here’s what a randomized study found when mobile internet was blocked.</p><p class="evidence-context">Independent research.<br>Not measured Velty results.</p><a class="research-link" href="https://doi.org/10.1093/pnasnexus/pgaf017" target="_blank" rel="noopener noreferrer">PNAS Nexus · 2025<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div><div class="research-results"><div class="metric"><span class="metric-value">153<span>min / day</span></span><div><h3>Less screen time</h3><p>Daily average fell from 314 to 161 minutes in the intervention group with complete screen-time records.</p></div></div><div class="metric"><span class="metric-value metric-percent">91%</span><div><h3>Improved on at least one outcome</h3><p>The authors report improvement in mental health, well-being or sustained attention.</p></div></div><div class="metric"><span class="metric-value">2<span>weeks</span></span><div><h3>A break from mobile internet</h3><p>Calls and texts stayed available. Internet access on other devices was allowed.</p></div></div><details class="research-method"><summary>Study details &amp; limitations<span class="plus" aria-hidden="true"></span></summary><div><p>Castelo et al., PNAS Nexus 4(2), pgaf017 (2025). Among self-selected iPhone users, 467 enrolled; 313 completed all surveys; 119 kept the block active for at least 10 of 14 days. The screen-time figures use 92 intervention participants with complete screenshots. Screen time partly rebounded afterward. Findings may not generalize to every user or to Velty.</p></div></details></div></div></section>
 <!-- Temporarily hidden until verified customer reviews are ready. -->
 <section class="shell section voices" id="voices" aria-labelledby="voices-title" hidden><div class="section-heading"><h2 id="voices-title">Real lives.<br>Real perspectives.</h2><p>Customer stories, shared with permission.<br>These spaces are reserved for real reviews.</p></div><div class="testimonials-grid"><article class="testimonial-card" aria-label="Customer review placeholder"><span class="testimonial-tag">Review placeholder</span><p class="testimonial-prompt">A real experience.<br>In their own words.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Customer name</p><span>Product used · to be added</span></div></div></article><article class="testimonial-card" aria-label="Customer review placeholder"><span class="testimonial-tag">Review placeholder</span><p class="testimonial-prompt">A real experience.<br>In their own words.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Customer name</p><span>Product used · to be added</span></div></div></article><article class="testimonial-card" aria-label="Customer review placeholder"><span class="testimonial-tag">Review placeholder</span><p class="testimonial-prompt">A real experience.<br>In their own words.</p><div class="review-lines" aria-hidden="true"><span></span><span></span><span></span></div><div class="review-author"><span class="avatar-placeholder" aria-hidden="true"></span><div><p>Customer name</p><span>Product used · to be added</span></div></div></article></div></section>
-<section class="shell waitlist" id="waitlist" aria-labelledby="waitlist-title"><h2 id="waitlist-title">Make room for<br>what matters.</h2><div class="waitlist-copy"><p>Be part of what’s next for Velty.<br>Join the waitlist for launch news and product availability.</p><a class="btn btn-solid waitlist-link" id="waitlist-link" hidden>Join the waitlist<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a><div class="waitlist-status" id="waitlist-status" role="status">Waitlist registration opens soon</div><p class="waitlist-note subtle" id="waitlist-note">Check back here for the sign-up link.</p></div></section>
+<section class="shell waitlist" id="waitlist" aria-labelledby="waitlist-title"><h2 id="waitlist-title">Make room for<br>what matters.</h2><div class="waitlist-copy"><p>Be part of what’s next for Velty.<br>Join the waitlist for launch news and product availability.</p><form id="waitlist-form" class="signup-form" novalidate aria-describedby="signup-status">
+<label class="signup-label" for="signup-email">Your email</label>
+<input id="signup-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" maxlength="254" required aria-describedby="signup-status">
+<div class="signup-trap" aria-hidden="true"><label for="signup-website">Website</label><input id="signup-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<label class="signup-consent"><input name="consent" type="checkbox" required aria-describedby="signup-status"><span>I agree to receive Velty launch and product news by email. <a href="privacy.html#waitlist" target="_blank" rel="noopener">Privacy policy</a></span></label>
+<button class="btn btn-solid signup-submit" type="submit">Join the waitlist<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
+</form>
+<p class="signup-message" id="signup-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<noscript><p class="small">Enable JavaScript to join the waitlist, or contact <a href="mailto:hello@velter.co">hello@velter.co</a>.</p></noscript></div></section>
 </main>
 <footer class="footer"><div class="shell"><div class="footer-top"><a href="#top" class="wordmark" aria-label="Velty home">velty</a><nav class="footer-links" aria-label="Footer navigation"><a href="#attention">Why Velty</a><a href="#products">Our products</a><a href="#waitlist" data-waitlist>Join the waitlist</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Velty. Space for what matters.</span><a class="top-link" href="#top">Back to top<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div></div></footer>
 <script>
-// Set the real waitlist URL here. No personal data is collected by this preview.
-const VELTY_CONFIG = { waitlistUrl: '' };
+const VELTY_CONFIG = { subscribeUrl: 'https://syndesign.ru/velty-api/subscribe' };
 const navShell = document.querySelector('.nav-shell');
 const menuToggle = document.querySelector('.menu-toggle');
 function closeMenu() { navShell.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); menuToggle.setAttribute('aria-label','Open menu'); }
@@ -150,8 +174,76 @@ document.addEventListener('keydown', event => { if(event.key === 'Escape' && nav
 document.addEventListener('click', event => { if (!navShell.contains(event.target)) closeMenu(); });
 const desktop = matchMedia('(min-width:1001px)');
 desktop.addEventListener('change', closeMenu);
-// Only activate signup when a valid HTTPS destination has been supplied.
-if (VELTY_CONFIG.waitlistUrl) { try { const url = new URL(VELTY_CONFIG.waitlistUrl); if(url.protocol !== 'https:') throw new Error('HTTPS URL required'); document.querySelectorAll('[data-waitlist]').forEach(a => a.href = url.href); const cta = document.getElementById('waitlist-link'); cta.href = url.href; cta.hidden = false; document.getElementById('waitlist-status').hidden = true; document.getElementById('waitlist-note').textContent = 'Continue to the Velty waitlist.'; } catch { console.warn('The waitlist URL must be a valid HTTPS address.'); } }
+// A success state is shown only after the server has persisted the address.
+const signupForm = document.getElementById('waitlist-form');
+const signupStatus = document.getElementById('signup-status');
+const signupButton = signupForm.querySelector('button[type="submit"]');
+const signupEmail = signupForm.elements.email;
+const signupConsent = signupForm.elements.consent;
+const signupCopy = {
+  invalid: 'Enter a valid email address, for example name@example.com.',
+  consent: 'Please agree to receive Velty news to join the waitlist.',
+  sending: 'Saving your email…',
+  success: 'You’re on the list. We’ll email you when there’s news about the launch.',
+  limited: 'Too many attempts. Please try again in 10 minutes.',
+  error: 'We couldn’t save your email. Check your connection and try again.'
+};
+let signupSource = 'waitlist';
+document.querySelectorAll('[data-waitlist]').forEach(link => link.addEventListener('click', () => {
+  signupSource = link.closest('.product')?.id || (link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'waitlist');
+}));
+function signupMessage(message, error = false) {
+  signupStatus.textContent = message;
+  signupStatus.dataset.state = error ? 'error' : 'status';
+}
+signupForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (signupButton.disabled) return;
+  signupEmail.value = signupEmail.value.trim();
+  signupEmail.removeAttribute('aria-invalid');
+  signupConsent.removeAttribute('aria-invalid');
+  if (!signupEmail.validity.valid) {
+    signupMessage(signupCopy.invalid, true);
+    signupEmail.setAttribute('aria-invalid', 'true');
+    signupEmail.focus();
+    return;
+  }
+  if (!signupConsent.checked) {
+    signupMessage(signupCopy.consent, true);
+    signupConsent.setAttribute('aria-invalid', 'true');
+    signupConsent.focus();
+    return;
+  }
+  signupButton.disabled = true;
+  signupForm.setAttribute('aria-busy', 'true');
+  signupMessage(signupCopy.sending);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(VELTY_CONFIG.subscribeUrl, {
+      method: 'POST', credentials: 'omit', signal: controller.signal,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: signupEmail.value, consent: true, locale: document.documentElement.lang,
+        source: signupSource, website: signupForm.elements.website.value })
+    });
+    const result = await response.json();
+    if (!response.ok || result.ok !== true) {
+      signupMessage(response.status === 429 ? signupCopy.limited : result.error === 'invalid_email' ? signupCopy.invalid : signupCopy.error, true);
+      if (result.error === 'invalid_email') { signupEmail.setAttribute('aria-invalid', 'true'); signupEmail.focus(); }
+      return;
+    }
+    signupMessage(signupCopy.success);
+    signupStatus.tabIndex = -1;
+    signupStatus.focus({ preventScroll: true });
+    signupForm.hidden = true;
+  } catch {
+    signupMessage(signupCopy.error, true);
+  } finally {
+    clearTimeout(timeout);
+    signupButton.disabled = false;
+    signupForm.removeAttribute('aria-busy');
+  }
+});
 document.getElementById('year').textContent = new Date().getFullYear();
 // Keep the current section when changing language; normal links also work without JS.
 function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { const destination = new URL(link.href); destination.searchParams.set('lang', link.hreflang); destination.hash = location.hash; link.href = destination.href; }); }
