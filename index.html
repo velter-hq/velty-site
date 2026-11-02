@@ -88,6 +88,30 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 </style>
 <link rel="alternate" hreflang="en" href="./">
 <link rel="alternate" hreflang="ru" href="ru/">
+<script id="language-routing">
+// A direct RU URL and manual selection take priority over browser detection.
+(() => {
+  const supported = value => value === 'en' || value === 'ru';
+  const requested = new URLSearchParams(location.search).get('lang');
+  let saved = null;
+  try { saved = localStorage.getItem('velty.language'); } catch {}
+  const explicit = supported(requested) ? requested : null;
+  const browserLanguage = (navigator.languages?.[0] || navigator.language || 'en').toLowerCase();
+  const detected = browserLanguage.split('-')[0] === 'ru' ? 'ru' : 'en';
+  const current = document.documentElement.lang;
+  const target = explicit || (current === 'ru' ? 'ru' : (supported(saved) ? saved : detected));
+  if (explicit) { try { localStorage.setItem('velty.language', explicit); } catch {} }
+  if (target !== current) {
+    const alternate = document.querySelector('link[rel="alternate"][hreflang="' + target + '"]');
+    if (alternate) {
+      const destination = new URL(alternate.href);
+      destination.search = location.search;
+      destination.hash = location.hash;
+      location.replace(destination.href);
+    }
+  }
+})();
+</script>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
@@ -130,9 +154,10 @@ desktop.addEventListener('change', closeMenu);
 if (VELTY_CONFIG.waitlistUrl) { try { const url = new URL(VELTY_CONFIG.waitlistUrl); if(url.protocol !== 'https:') throw new Error('HTTPS URL required'); document.querySelectorAll('[data-waitlist]').forEach(a => a.href = url.href); const cta = document.getElementById('waitlist-link'); cta.href = url.href; cta.hidden = false; document.getElementById('waitlist-status').hidden = true; document.getElementById('waitlist-note').textContent = 'Continue to the Velty waitlist.'; } catch { console.warn('The waitlist URL must be a valid HTTPS address.'); } }
 document.getElementById('year').textContent = new Date().getFullYear();
 // Keep the current section when changing language; normal links also work without JS.
-function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { const destination = new URL(link.href); destination.hash = location.hash; link.href = destination.href; }); }
+function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { const destination = new URL(link.href); destination.searchParams.set('lang', link.hreflang); destination.hash = location.hash; link.href = destination.href; }); }
 syncLanguageLinks();
 addEventListener('hashchange', syncLanguageLinks);
+document.querySelectorAll('.language-switch a').forEach(link => link.addEventListener('click', () => { try { localStorage.setItem('velty.language', link.hreflang); } catch {} }));
 // Current section feedback without changing keyboard focus or browser history.
 if ('IntersectionObserver' in window) { const sections = document.querySelectorAll('#attention, #products, #impact'); const observer = new IntersectionObserver(entries => { entries.forEach(entry => { const link = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]'); if (entry.isIntersecting) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); }); }, {rootMargin:'-20% 0px -55% 0px',threshold:0}); sections.forEach(section => observer.observe(section)); }
 
