@@ -135,11 +135,11 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 <style>
 /* Original vector artwork from Figma; keep its intrinsic aspect ratio. */
 .wordmark{width:142px;min-width:70px;flex-shrink:1;vertical-align:middle}
-.brand-logo{display:block;width:90%;height:auto;aspect-ratio:340 / 85.7018}
+.brand-logo{display:block;width:90%;height:auto;aspect-ratio:327 / 85.7018}
 .header-actions{flex-shrink:0}
-.footer .wordmark{width:164px;min-width:0;flex-shrink:0}
+.footer .wordmark{width:142px;min-width:0;flex-shrink:0}
 .footer .brand-logo{filter:brightness(0) invert(1)}
-@media(max-width:700px){.wordmark{width:118px}.footer .wordmark{width:120px}}
+@media(max-width:700px){.wordmark{width:118px}.footer .wordmark{width:118px}}
 @media(max-width:360px){.site-header .wordmark{width:96px}}
 </style>
 </head>
@@ -261,6 +261,14 @@ signupForm.addEventListener('submit', async event => {
   }
 });
 document.getElementById('year').textContent = new Date().getFullYear();
+// Keep both logo slots equal even when the header contracts beside mobile controls.
+const headerWordmark = document.querySelector('.site-header .wordmark');
+const footerWordmark = document.querySelector('.footer .wordmark');
+function syncBrandSize() { footerWordmark.style.width = headerWordmark.getBoundingClientRect().width + 'px'; }
+syncBrandSize();
+if ('ResizeObserver' in window) new ResizeObserver(syncBrandSize).observe(headerWordmark);
+else addEventListener('resize', syncBrandSize, { passive: true });
+
 // Keep the current section when changing language; normal links also work without JS.
 function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { const destination = new URL(link.href); destination.searchParams.set('lang', link.hreflang); destination.hash = location.hash; link.href = destination.href; }); }
 syncLanguageLinks();
