@@ -7,10 +7,23 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://syndesign.ru; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Заявки Velty</title>
-<link rel="icon" href="/favicon.ico?v=20261104" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104">
-<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104">
+<link rel="icon" href="/favicon.ico?v=20261104-theme" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104-theme" data-theme-icon data-light="/favicon.png?v=20261104-theme" data-dark="/favicon-dark.png?v=20261104-theme">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104-theme" data-theme-icon data-light="/favicon.svg?v=20261104-theme" data-dark="/favicon-dark.svg?v=20261104-theme">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261104">
+<script>
+// Fixed-color variants also support browsers that ignore media rules inside SVG favicons.
+(() => {
+  if (!window.matchMedia) return;
+  const theme = window.matchMedia('(prefers-color-scheme: dark)');
+  const updateIcon = () => document.querySelectorAll('[data-theme-icon]').forEach(icon => {
+    icon.href = theme.matches ? icon.dataset.dark : icon.dataset.light;
+  });
+  updateIcon();
+  if (theme.addEventListener) theme.addEventListener('change', updateIcon);
+  else if (theme.addListener) theme.addListener(updateIcon);
+})();
+</script>
 <style>
 @font-face{font-family:Inter;src:url('../assets/InterVariable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 :root{color-scheme:light;--paper:#f0efe9;--ink:#322d2a;--muted:#69645d;--line:#c8c3b9}
