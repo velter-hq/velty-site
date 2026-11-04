@@ -4,10 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Velty Privacy Policy</title>
-<link rel="icon" href="/favicon.ico?v=20261104" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104">
-<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104">
+<link rel="icon" href="/favicon.ico?v=20261104-theme" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104-theme" data-theme-icon data-light="/favicon.png?v=20261104-theme" data-dark="/favicon-dark.png?v=20261104-theme">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104-theme" data-theme-icon data-light="/favicon.svg?v=20261104-theme" data-dark="/favicon-dark.svg?v=20261104-theme">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261104">
+<script>
+// Fixed-color variants also support browsers that ignore media rules inside SVG favicons.
+(() => {
+  if (!window.matchMedia) return;
+  const theme = window.matchMedia('(prefers-color-scheme: dark)');
+  const updateIcon = () => document.querySelectorAll('[data-theme-icon]').forEach(icon => {
+    icon.href = theme.matches ? icon.dataset.dark : icon.dataset.light;
+  });
+  updateIcon();
+  if (theme.addEventListener) theme.addEventListener('change', updateIcon);
+  else if (theme.addListener) theme.addListener(updateIcon);
+})();
+</script>
 <meta name="description" content="Velty app privacy and email addresses submitted to the website waitlist.">
 <link rel="alternate" hreflang="ru" href="https://velty.me/ru/privacy.html">
 <link rel="stylesheet" href="style.css">

@@ -6,10 +6,23 @@
 <meta name="theme-color" content="#f0efe9">
 <meta name="description" content="Больше пространства для важного. Velty App, Velty TAG и Velty Capsule помогают осознаннее взаимодействовать с цифровым миром.">
 <title>Velty — Фокус на том, что важно</title>
-<link rel="icon" href="/favicon.ico?v=20261104" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104">
-<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104">
+<link rel="icon" href="/favicon.ico?v=20261104-theme" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261104-theme" data-theme-icon data-light="/favicon.png?v=20261104-theme" data-dark="/favicon-dark.png?v=20261104-theme">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261104-theme" data-theme-icon data-light="/favicon.svg?v=20261104-theme" data-dark="/favicon-dark.svg?v=20261104-theme">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261104">
+<script>
+// Fixed-color variants also support browsers that ignore media rules inside SVG favicons.
+(() => {
+  if (!window.matchMedia) return;
+  const theme = window.matchMedia('(prefers-color-scheme: dark)');
+  const updateIcon = () => document.querySelectorAll('[data-theme-icon]').forEach(icon => {
+    icon.href = theme.matches ? icon.dataset.dark : icon.dataset.light;
+  });
+  updateIcon();
+  if (theme.addEventListener) theme.addEventListener('change', updateIcon);
+  else if (theme.addListener) theme.addListener(updateIcon);
+})();
+</script>
 <style>
 @font-face{font-family:Inter;src:url('../assets/InterVariable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
 :root{--paper:#f0efe9;--ink:#322d2a;--muted:#68625d;--line:#c9c6be;--panel:#e1dfd6;--dark:#242320;--radius:64px;--gutter:clamp(22px,4.5vw,72px);--max:1440px;--ease:cubic-bezier(.16,1,.3,1)}
