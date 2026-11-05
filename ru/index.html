@@ -169,6 +169,39 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 @media(max-width:360px){.site-header .wordmark{width:96px}}
 </style>
 
+<style id="desktop-hero-heading">
+/* Desktop hero scale; retain mobile and tablet typography. */
+@media(min-width:1001px){html[lang] .hero h1{font-size:clamp(48px,4.7vw,68px)}}
+</style>
+<style id="velty-motion-styles">
+/* Focus emerges from haze; supporting content stays quiet. */
+.motion-word{display:inline-block;white-space:nowrap}
+.motion-char{display:inline-block}
+.motion-ready [data-motion-state="pending"]{opacity:0}
+@media(prefers-reduced-motion:no-preference){
+  .motion-ready [data-motion="letters"][data-motion-state="running"] .motion-char{
+    animation:velty-letter-in var(--motion-duration,520ms) ease-out both;
+    animation-delay:var(--letter-delay,0ms)
+  }
+  .motion-ready [data-motion="rise"][data-motion-state="running"]{
+    animation:velty-content-in 360ms ease-out both;animation-delay:var(--reveal-delay,0ms)
+  }
+  .motion-ready [data-motion="fade"][data-motion-state="running"]{
+    animation:velty-opacity-in 520ms ease-out both;animation-delay:var(--reveal-delay,0ms)
+  }
+}
+@keyframes velty-letter-in{from{opacity:0;filter:blur(6px);transform:translateY(6px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes velty-content-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes velty-opacity-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .motion-ready [data-motion-state="running"]{animation:velty-opacity-in 120ms ease-out both!important}
+  .motion-char{animation:none!important;filter:none!important;transform:none!important}
+}
+@media print{
+  [data-motion-state]{opacity:1!important;animation:none!important;transform:none!important;filter:none!important}
+  .motion-char{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+}
+</style>
 <style>html[lang="ru"] .stat>.source{border-top:0;margin-bottom:8px}html[lang="ru"] .stat>.source>summary{padding-top:0;min-height:44px}html[lang="ru"] .stat>.source[open]{margin-bottom:24px}</style>
 </head>
 <body id="top">
@@ -330,6 +363,137 @@ heroVideoControl.addEventListener('click', () => {
 });
 if (heroReducedMotion.matches) { heroVideo.autoplay = false; heroVideo.pause(); }
 heroReducedMotion.addEventListener('change', event => { if (event.matches) heroVideo.pause(); });
+</script>
+<script id="velty-motion-runtime">
+// Default HTML stays readable if scripts or observers fail.
+(() => {
+  const root = document.documentElement;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const plans = new Map();
+  let observer;
+  const headingSelector = 'main h1, main h2, main h3';
+  const graphemes = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(root.lang, { granularity: 'grapheme' }) : null;
+  const letters = text => graphemes
+    ? Array.from(graphemes.segment(text), item => item.segment) : Array.from(text);
+
+  function finish(element) {
+    const plan = plans.get(element);
+    if (!plan) return;
+    clearTimeout(plan.timer);
+    element.dataset.motionState = 'done';
+    observer?.unobserve(element);
+  }
+
+  function reveal(element) {
+    const plan = plans.get(element);
+    if (!plan || element.dataset.motionState !== 'pending') return;
+    element.dataset.motionState = 'running';
+    observer?.unobserve(element);
+    const total = reduced.matches ? 120 : plan.duration + plan.delay;
+    plan.timer = setTimeout(() => finish(element), total + 48);
+  }
+
+  function prepare(element, kind, delay = 0) {
+    if (plans.has(element) || element.closest('[hidden], details:not([open])')) return;
+    element.dataset.motion = kind;
+    element.dataset.motionState = 'pending';
+    element.style.setProperty('--reveal-delay', delay + 'ms');
+    plans.set(element, { duration: kind === 'rise' ? 360 : 520, delay, timer: null });
+  }
+
+  function splitHeading(heading) {
+    const label = heading.innerText.replace(/\s+/g, ' ').trim();
+    const visual = document.createElement('span');
+    visual.className = 'motion-heading-copy';
+    visual.setAttribute('aria-hidden', 'true');
+    const glyphs = [];
+    function append(source, destination) {
+      if (source.nodeType === Node.TEXT_NODE) {
+        source.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { destination.append(document.createTextNode(part)); return; }
+          const word = document.createElement('span');
+          word.className = 'motion-word';
+          letters(part).forEach(letter => {
+            const glyph = document.createElement('span');
+            glyph.className = 'motion-char';
+            glyph.textContent = letter;
+            glyphs.push(glyph);
+            word.append(glyph);
+          });
+          destination.append(word);
+        });
+      } else if (source.nodeType === Node.ELEMENT_NODE) {
+        const copy = source.cloneNode(false);
+        Array.from(source.childNodes).forEach(child => append(child, copy));
+        destination.append(copy);
+      }
+    }
+    Array.from(heading.childNodes).forEach(node => append(node, visual));
+    const hero = heading.tagName === 'H1';
+    const duration = hero ? 660 : 520;
+    const spread = hero ? 360 : 280;
+    const step = Math.min(hero ? 22 : 18, spread / Math.max(1, glyphs.length - 1));
+    glyphs.forEach((glyph, index) => glyph.style.setProperty('--letter-delay', index * step + 'ms'));
+    heading.setAttribute('aria-label', label);
+    heading.replaceChildren(visual);
+    heading.style.setProperty('--motion-duration', duration + 'ms');
+    const plan = plans.get(heading);
+    plan.duration = duration;
+    plan.delay = Math.max(0, glyphs.length - 1) * step;
+  }
+
+  try {
+    document.querySelectorAll(headingSelector).forEach(heading => {
+      prepare(heading, 'letters');
+      if (plans.has(heading)) splitHeading(heading);
+    });
+    const supporting = [
+      '.hero-side > p', '.hero-side > .btn', '.hero-foot > *',
+      '.attention .intro', '.attention .stat', '.section-heading > p',
+      '.product-copy > .status', '.product-copy > p',
+      '.product-copy > .text-link', '.product-copy > .product-detail',
+      '.impact .lead', '.evidence-context', '.research-link',
+      '.metric', '.research-method', '.waitlist-copy'
+    ].join(',');
+    document.querySelectorAll(supporting).forEach(element => {
+      const delay = element.matches('.hero-side > .btn, .product-copy > .text-link') ? 200
+        : element.matches('.hero-side > p, .product-copy > p, .impact .lead') ? 100 : 0;
+      prepare(element, 'rise', delay);
+    });
+    document.querySelectorAll('.hero-image, .product-media, .footer-top, .footer-bottom, .site-header .wordmark, .site-header .header-actions')
+      .forEach(element => prepare(element, 'fade', element.matches('.hero-image') ? 200 : 0));
+
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
+      }, { rootMargin: '0px 0px -24px 0px', threshold: 0 });
+      root.classList.add('motion-ready');
+      plans.forEach((_, element) => observer.observe(element));
+    } else {
+      plans.forEach((_, element) => finish(element));
+    }
+    // Keyboard users never wait for a focused action to become visible.
+    document.addEventListener('focusin', event => {
+      plans.forEach((_, element) => { if (element.contains(event.target)) finish(element); });
+    });
+    reduced.addEventListener('change', event => {
+      if (event.matches) plans.forEach((_, element) => finish(element));
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) plans.forEach((_, element) => {
+        if (element.dataset.motionState === 'running') finish(element);
+      });
+    });
+    window.addEventListener('pageshow', event => {
+      if (event.persisted) plans.forEach((_, element) => finish(element));
+    });
+  } catch {
+    root.classList.remove('motion-ready');
+    plans.forEach((_, element) => finish(element));
+  }
+})();
 </script>
 </body>
 </html>
