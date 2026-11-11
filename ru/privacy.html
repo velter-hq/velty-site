@@ -4,33 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Политика конфиденциальности Velty</title>
-<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/velty-favicon-light-v3.ico" data-theme-icon data-light="/velty-favicon-light-v3.ico" data-dark="/velty-favicon-dark-v3.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/velty-favicon-light-v3.png" data-theme-icon data-light="/velty-favicon-light-v3.png" data-dark="/velty-favicon-dark-v3.png">
-<link rel="icon" type="image/svg+xml" sizes="any" href="/velty-favicon-light-v3.svg" data-theme-icon data-light="/velty-favicon-light-v3.svg" data-dark="/velty-favicon-dark-v3.svg">
+<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/favicon.ico?v=20261111-green">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=20261111-green">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=20261111-green">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261104">
-<script>
-// Keep every candidate, including ICO, in the same theme. Replacing the links
-// makes browser chrome reconsider previously cached icons after a theme change.
-(() => {
-  if (!window.matchMedia) return;
-  const theme = window.matchMedia('(prefers-color-scheme: dark)');
-  let icons = Array.from(document.querySelectorAll('[data-theme-icon]'));
-  const updateIcons = () => {
-    icons = icons.map(icon => {
-      const href = theme.matches ? icon.dataset.dark : icon.dataset.light;
-      if (icon.getAttribute('href') === href) return icon;
-      const replacement = icon.cloneNode(true);
-      replacement.setAttribute('href', href);
-      icon.replaceWith(replacement);
-      return replacement;
-    });
-  };
-  updateIcons();
-  if (theme.addEventListener) theme.addEventListener('change', updateIcons);
-  else if (theme.addListener) theme.addListener(updateIcons);
-  window.addEventListener('pageshow', updateIcons);
-})();
-</script>
 <meta name="description" content="Данные приложения Velty и email в листе ожидания на сайте.">
 <link rel="alternate" hreflang="en" href="https://velty.me/privacy.html">
 <link rel="stylesheet" href="../style.css">
