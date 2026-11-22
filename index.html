@@ -195,11 +195,11 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol><symbol id="image" viewBox="0 0 48 48"><rect x="5" y="5" width="38" height="38" rx="8"/><circle cx="17" cy="17" r="3"/><path d="m7 35 11-11 8 7 7-9 10 13"/></symbol></svg>
 <header class="site-header"><div class="shell header-inner">
 <a class="wordmark" href="#top" aria-label="Velty home"><span class="brand-logo" aria-hidden="true"></span></a>
-<div class="header-actions"><div class="nav-shell" id="navigation"><nav class="nav-links" id="nav-links" aria-label="Main navigation"><a href="#attention">Why Velty</a><a href="#products">Our products</a><a href="#impact">Impact</a></nav><a class="nav-cta" href="#waitlist" data-waitlist><span class="cta-desktop">Join the waitlist</span><span class="cta-mobile">Join waitlist</span><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a><button class="menu-toggle" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button></div><nav class="language-switch" aria-label="Language"><a href="./" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a><a href="ru/" lang="ru" hreflang="ru" aria-label="Русский">RU</a></nav></div>
+<div class="header-actions"><div class="nav-shell" id="navigation"><nav class="nav-links" id="nav-links" aria-label="Main navigation"><a href="#attention">Why Velty</a><a href="#products">Our products</a><a href="#impact">Impact</a></nav><a class="nav-cta" href="#app" data-try><span class="cta-desktop">Try Velty</span><span class="cta-mobile">Try Velty</span><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a><button class="menu-toggle" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button></div><nav class="language-switch" aria-label="Language"><a href="./" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a><a href="ru/" lang="ru" hreflang="ru" aria-label="Русский">RU</a></nav></div>
 </div></header>
 <main id="main">
 <section class="hero shell" aria-labelledby="hero-title">
-<div class="hero-top"><h1 id="hero-title">Focus on what’s<br>important.</h1><div class="hero-side"><p>A little less screen.<br>A little more space for your life.<br>Make room for what matters with Velty.</p><a href="#products" class="btn">Explore Velty<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div></div>
+<div class="hero-top"><h1 id="hero-title">Focus on what’s<br>important.</h1><div class="hero-side"><p>A little less screen.<br>A little more space for your life.<br>Make room for what matters with Velty.</p><a href="#app" class="btn">How Velty works<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div></div>
 <figure class="hero-image"><img src="assets/velty-hero.webp" srcset="assets/velty-hero-small.webp 1000w, assets/velty-hero.webp 2400w" sizes="(min-width:1440px) 1310px, (max-width:700px) calc(100vw - 44px), 91vw" width="2400" height="1200" alt="A woman with an open book looks out of a train window, her reflection visible in the glass while other passengers use their phones." fetchpriority="high" decoding="async"><video id="hero-video" class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/velty-hero.webp" width="2400" height="1200" aria-label="A quiet moment reading on a moving train"><source src="assets/velty-hero-loop-20261030.mp4" type="video/mp4"></video><button class="hero-video-control" id="hero-video-control" type="button" aria-label="Pause background video" title="Pause video" hidden><svg class="hero-video-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="hero-video-play" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="m9 6 9 6-9 6Z"/></svg></button></figure>
 <div class="hero-foot"><span>Technology with a little more intention.</span><a href="#attention">Discover a different rhythm<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a></div>
 </section>
@@ -486,6 +486,18 @@ heroReducedMotion.addEventListener('change', event => { if (event.matches) heroV
     root.classList.remove('motion-ready');
     plans.forEach((_, element) => finish(element));
   }
+})();
+</script>
+<script>
+// «Попробовать Velty»: iPhone и iPad сразу в TestFlight, Android в Google Play, компьютер к карточке приложения.
+(function(){
+  var ios='https://testflight.apple.com/join/X9Jvy3B9', android='https://play.google.com/store/apps/details?id=velty.app';
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var isAndroid=/Android/i.test(ua);
+  document.querySelectorAll('[data-try]').forEach(function(a){
+    if(isAndroid) a.href=android; else if(isIOS) a.href=ios;
+  });
 })();
 </script>
 </body>
