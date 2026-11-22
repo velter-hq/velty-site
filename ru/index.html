@@ -146,7 +146,7 @@ html[lang="ru"] .stat-figure span{white-space:normal}
 .tag-order-open[aria-expanded="true"]{display:none}
 .order-form{margin-top:4px}
 .order-label{font-size:13px;color:var(--muted);margin:6px 0 -6px 20px}
-.order-form input[type="text"],.order-form input[type="tel"],.order-form textarea{width:100%;min-width:0;min-height:56px;padding:15px 20px;background:transparent;border:1px solid #9e978c;border-radius:28px;color:var(--ink);font:inherit;font-size:16px;caret-color:var(--ink)}
+.order-form input[type="text"],.order-form input[type="tel"],.order-form input[type="email"],.order-form textarea{width:100%;min-width:0;min-height:56px;padding:15px 20px;background:transparent;border:1px solid #9e978c;border-radius:28px;color:var(--ink);font:inherit;font-size:16px;caret-color:var(--ink)}
 .order-form textarea{resize:vertical;line-height:1.5}
 .order-form ::placeholder{color:var(--muted);opacity:1}
 .product-copy .tag-seller{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 10px}
@@ -240,6 +240,8 @@ mark.todo{background:#ffe08a;color:#322d2a;padding:0 3px;border-radius:3px}
 <input id="order-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" maxlength="100" required>
 <label class="order-label" for="order-phone">Телефон</label>
 <input id="order-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00" maxlength="30" required>
+<label class="order-label" for="order-email">Email, необязательно</label>
+<input id="order-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" maxlength="254">
 <label class="order-label" for="order-address">Адрес доставки</label>
 <textarea id="order-address" name="address" autocomplete="street-address" placeholder="Индекс, город, улица, дом, квартира" maxlength="400" rows="3" required></textarea>
 <div class="signup-trap" aria-hidden="true"><label for="order-website">Website</label><input id="order-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -249,7 +251,7 @@ mark.todo{background:#ffe08a;color:#322d2a;padding:0 3px;border-radius:3px}
 </form>
 <div class="signup-message" id="order-status" role="status" aria-live="polite" aria-atomic="true"><svg class="signup-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="m5 12 4 4L19 6"/></svg><div><h3 class="signup-success-title" hidden>Заказ принят</h3><p data-order-message></p></div></div>
 </div>
-<details class="product-detail"><summary>Как проходит заказ<span class="plus" aria-hidden="true"></span></summary><p>Оставьте имя, телефон и адрес доставки. Менеджер свяжется по телефону или в мессенджере MAX по будням с 10 до 18 (мск), подтвердит адрес и способ оплаты. Сейчас ничего платить не нужно.</p></details></div></article>
+<details class="product-detail"><summary>Как проходит заказ<span class="plus" aria-hidden="true"></span></summary><p>Оставьте имя, телефон и адрес доставки. Менеджер свяжется по телефону, в мессенджере MAX или по email по будням с 10 до 18 (мск), подтвердит адрес и способ оплаты. Сейчас ничего платить не нужно.</p></details></div></article>
 <article class="product capsule-block" id="capsule" aria-labelledby="capsule-title">
   <figure class="product-media product-capsule">
     <img class="capsule-photo" src="../assets/velty-capsule.webp" width="1600" height="1099"
@@ -317,10 +319,11 @@ const orderCopy = {
   name: 'Укажите имя.',
   phone: 'Укажите телефон с кодом города или оператора, например +7 900 000-00-00.',
   address: 'Укажите адрес доставки: индекс, город, улицу, дом и квартиру.',
+  email: 'Проверьте email, например name@example.com, или оставьте поле пустым.',
   consent: 'Для заказа нужно согласие на обработку персональных данных.',
   terms: 'Подтвердите, что ознакомились с условиями продажи и политикой.',
   sending: 'Отправляем заказ…',
-  success: 'Менеджер свяжется по телефону или в мессенджере MAX по будням с 10 до 18 (мск), подтвердит адрес и способ оплаты.',
+  success: 'Менеджер свяжется по телефону, в мессенджере MAX или по email по будням с 10 до 18 (мск), подтвердит адрес и способ оплаты.',
   limited: 'Слишком много попыток. Попробуйте ещё раз через 10 минут.',
   error: 'Не удалось отправить заказ. Попробуйте ещё раз или позвоните нам: +7 499 647-79-04.'
 };
@@ -336,13 +339,14 @@ orderOpen.addEventListener('click', () => {
 orderForm.addEventListener('submit', async event => {
   event.preventDefault();
   if (orderButton.disabled) return;
-  const { name, phone, address, consent, terms, website } = orderForm.elements;
-  [name, phone, address, consent, terms].forEach(field => field.removeAttribute('aria-invalid'));
-  [name, phone, address].forEach(field => { field.value = field.value.trim(); });
+  const { name, phone, email, address, consent, terms, website } = orderForm.elements;
+  [name, phone, email, address, consent, terms].forEach(field => field.removeAttribute('aria-invalid'));
+  [name, phone, email, address].forEach(field => { field.value = field.value.trim(); });
   const fail = (field, message) => { orderMessage(message, true); field.setAttribute('aria-invalid', 'true'); field.focus(); };
   if (name.value.length < 2) return fail(name, orderCopy.name);
   const digits = phone.value.replace(/\D/g, '');
   if (digits.length < 10 || digits.length > 15) return fail(phone, orderCopy.phone);
+  if (email.value && !email.validity.valid) return fail(email, orderCopy.email);
   if (address.value.length < 10) return fail(address, orderCopy.address);
   if (!consent.checked) return fail(consent, orderCopy.consent);
   if (!terms.checked) return fail(terms, orderCopy.terms);
@@ -357,7 +361,7 @@ orderForm.addEventListener('submit', async event => {
       method: 'POST', credentials: 'omit', signal: controller.signal,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ product: 'velty-tag', price: 1990, oldPrice: 2990, currency: 'RUB',
-        name: name.value, phone: phone.value, address: address.value, consent: true, consentVersion: 'order-2026-11', page: location.href.split('#')[0],
+        name: name.value, phone: phone.value, email: email.value, address: address.value, consent: true, consentVersion: 'order-2026-11', page: location.href.split('#')[0],
         locale: document.documentElement.lang, website: website.value })
     });
     const result = await response.json();
