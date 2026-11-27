@@ -62,3 +62,13 @@ html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="of
 .store-pill{width:max-content;min-width:0;flex:0 0 auto}
 .store-links{flex-wrap:wrap;align-items:flex-start}
 .tag-device{margin-block:20px}
+
+.footer-top{align-items:flex-start}
+.footer-brand{display:grid;justify-items:start;min-width:0}
+.footer-store-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.footer-store-links .store-pill{width:max-content;flex:none;min-height:54px;padding:8px 16px;gap:10px;border-color:var(--paper);color:var(--paper)}
+.footer-store-links .store-pill small{color:var(--line)}
+.footer-store-links .store-pill>span>span{font-size:1rem;line-height:22px}
+.footer-store-links .store-pill:hover{background:#514940}
+.currency-note{color:var(--muted);font-size:.75rem;line-height:1.5;margin-top:12px}
+@media(max-width:380px){.footer-store-links .store-pill{padding-inline:12px;gap:8px}}

@@ -8,9 +8,9 @@
   <title>Velty — Focus on what matters</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261127">
   <link rel="preload" href="/assets/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/site-20261127/site.css">
+  <link rel="stylesheet" href="/assets/site-20261127/site.css?v=20261127-footer-en">
   <link rel="stylesheet" href="/assets/site-20261127/motion.css">
-  <script src="/assets/site-20261127/site.js" defer></script>
+  <script src="/assets/site-20261127/site.js?v=20261127-footer-en" defer></script>
   <script src="/assets/site-20261127/motion.js" defer></script>
 <link rel="canonical" href="https://velty.me/"><link rel="alternate" hreflang="en" href="https://velty.me/"><link rel="alternate" hreflang="ru" href="https://velty.me/ru/"><link rel="alternate" hreflang="x-default" href="https://velty.me/"><script id="language-routing">(()=>{const explicit=new URLSearchParams(location.search).get('lang');let saved;try{saved=localStorage.getItem('velty.language');if(explicit==='ru'||explicit==='en')localStorage.setItem('velty.language',explicit);}catch{}const preferred=explicit||saved||((navigator.languages?.[0]||navigator.language||'en').toLowerCase().startsWith('ru')?'ru':'en');if(document.documentElement.lang==='en'&&preferred==='ru'){location.replace('/ru/'+location.search+location.hash);}})();</script></head>
 <body id="top">
@@ -64,8 +64,8 @@
       <div class="app-intro-copy"><h2 id="app-title">An app for <br>a mindful pause</h2><p class="body-copy">Velty helps you notice when you open social media out of habit or lose track of time in an endless feed.</p></div>
     </div>
     <div class="mockup-grid">
-      <figure class="mockup-card pause-card"><div class="mockup-panel"></div><img src="/assets/site-20261127/pause-lake-phone.webp" width="1024" height="1536" alt="Velty’s mindful pause screen with a lake, breathing guide and 98% focus" loading="lazy"></figure>
-      <figure class="mockup-card home-card"><div class="home-crop"><img src="/assets/site-20261127/home-phone.webp" width="1024" height="1536" alt="Velty home screen with a weekly focus chart and selected apps: Instagram, YouTube and Facebook" loading="lazy"></div></figure>
+      <figure class="mockup-card pause-card"><div class="mockup-panel"></div><img src="/assets/site-20261127/pause-lake-phone-en.webp" width="1024" height="1536" alt="Velty’s mindful pause screen with a lake, breathing guide and 98% focus" loading="lazy"></figure>
+      <figure class="mockup-card home-card"><div class="home-crop"><img src="/assets/site-20261127/home-phone-en.webp" width="1024" height="1536" alt="Velty home screen with a weekly focus chart and selected apps: Instagram, YouTube and Facebook" loading="lazy"></div></figure>
     </div>
     <div class="app-mechanics" id="app-mechanics">
       <h3>A pause, then <br>you choose</h3>
@@ -81,7 +81,7 @@
           <div class="tag-device"><img src="/assets/site-20261127/velty-tag-large.png" width="271" height="226" alt="Compact Velty NFC tag" loading="lazy"><span class="nfc-pill"><svg width="16" height="16" viewbox="0 0 24 24" aria-hidden="true"><path d="M6 9a5 5 0 0 1 0 6m4-9a9 9 0 0 1 0 12m4-15a13 13 0 0 1 0 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>NFC</span></div>
           <h3>More ways to stay focused</h3>
           <p class="body-copy">Use the tag to fully block selected apps, for example during work hours. Tap it with your phone to unlock them briefly. Keep the tag away from your desk to make distractions less automatic, stay focused and work more productively.</p>
-          <div class="tag-purchase" id="order"><div class="price"><del>2,990 ₽</del><span>1,990 ₽</span><small>until 31 Dec 2026</small></div><p class="delivery">Delivery via CDEK.</p><button class="button button-solid" id="order-open" type="button" aria-expanded="false" aria-controls="order-panel">Order the tag <svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></button></div>
+          <div class="tag-purchase" id="order"><div class="price"><del>≈ $37</del><span>≈ $25</span><small>until 31 Dec 2026</small></div><p class="currency-note">USD equivalent at the 27 Nov 2026 rate. Order total: RUB 1,990.</p><p class="delivery">Delivery via CDEK.</p><button class="button button-solid" id="order-open" type="button" aria-expanded="false" aria-controls="order-panel">Order the tag <svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></button></div>
           <div class="order-panel" id="order-panel" hidden>
             <h3 id="order-title">Order a Velty Tag</h3>
             <p class="order-note" id="order-note">Leave your delivery details. Our team will contact you to confirm the order and payment method. There is nothing to pay now.</p>
@@ -94,13 +94,13 @@
               <label class="consent"><input name="consent" type="checkbox" required aria-describedby="order-status"><span>I give <a href="https://velty.me/ru/order-consent.html" target="_blank" rel="noopener">consent to personal data processing (in Russian)</a>.</span></label>
               <label class="consent"><input name="terms" type="checkbox" required aria-describedby="order-status"><span>I have read the <a href="https://velty.me/ru/tag-terms.html" target="_blank" rel="noopener">terms of sale (in Russian)</a> and <a href="https://velty.me/ru/order-privacy.html" target="_blank" rel="noopener">personal data policy (in Russian)</a>.</span></label>
               <div class="honeypot" aria-hidden="true"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
-              <button class="button button-solid order-submit" type="submit"><span>Send order · 1,990 ₽</span><svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></button>
+              <button class="button button-solid order-submit" type="submit"><span>Send order · ≈ $25</span><svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></button>
             </form>
             <div id="order-status" class="form-status" role="status" aria-live="polite" hidden></div>
           </div>
           <details class="order-details"><summary>How ordering works<span class="plus" aria-hidden="true"></span></summary><p>Leave your name, phone number and delivery address. Our team will contact you by phone, MAX messenger or email on weekdays, 10 am–6 pm Moscow time, to confirm the address and payment method. There is nothing to pay now.</p></details>
         </div>
-        <figure class="tag-visual"><img class="tag-scene-static" src="/assets/site-20261127/tag-scene-poster.webp" width="680" height="680" alt="A man works at his desk beside a phone showing Velty’s scheduled lock until 18:00" loading="lazy"></figure>
+        <figure class="tag-visual"><img class="tag-scene-static" src="/assets/site-20261127/tag-scene-en.webp" width="680" height="680" alt="A man works at his desk beside a phone showing Velty’s scheduled lock until 18:00" loading="lazy"></figure>
       </article>
 
       <article class="product capsule-product" id="capsule" aria-labelledby="capsule-title">
@@ -131,7 +131,10 @@
   </section>
 </main>
 
-<footer class="footer"><div class="shell"><div class="footer-top"><a class="brand" href="#top" aria-label="Velty — back to top"><img src="/assets/velty-logo-green-footer.svg" width="110" height="32" alt="Velty"></a><nav aria-label="Footer navigation"><a href="#attention">Why Velty</a><a href="#app">Products</a><a href="#contact">Contact us</a><a class="footer-terms" href="https://velty.me/ru/tag-terms.html">Terms of sale (RU)</a><a class="telegram-link" href="https://t.me/velty" target="_blank" rel="noopener"><svg width="16" height="16" aria-hidden="true"><use href="#telegram"></use></svg>Telegram</a></nav></div><div class="footer-bottom"><span>© 2026 Velty. Make room for what matters.</span><div class="footer-controls"><button class="motion-toggle" type="button">Turn off animation</button><a href="#top">Back to top <svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></a></div></div></div></footer>
+<footer class="footer"><div class="shell"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#top" aria-label="Velty — back to top"><img src="/assets/velty-logo-green-footer.svg" width="110" height="32" alt="Velty"></a><div class="footer-store-links" aria-label="Download the app">
+<button class="store-pill" type="button" data-store="ios"><img src="/assets/site-20261127/app-store.svg" alt="" width="24" height="24"><span><small>Download on</small><span>App Store</span></span></button>
+<a class="store-pill" href="https://play.google.com/store/apps/details?id=velty.app" target="_blank" rel="noopener"><img src="/assets/site-20261127/google-play.svg" alt="" width="24" height="27"><span><small>Download on</small><span>Google Play</span></span></a>
+</div></div><nav aria-label="Footer navigation"><a href="#attention">Why Velty</a><a href="#app">Products</a><a href="#contact">Contact us</a><a class="footer-terms" href="https://velty.me/ru/tag-terms.html">Terms of sale (RU)</a><a class="telegram-link" href="https://t.me/velty" target="_blank" rel="noopener"><svg width="16" height="16" aria-hidden="true"><use href="#telegram"></use></svg>Telegram</a></nav></div><div class="footer-bottom"><span>© 2026 Velty. Make room for what matters.</span><div class="footer-controls"><button class="motion-toggle" type="button">Turn off animation</button><a href="#top">Back to top <svg class="arrow" aria-hidden="true"><use href="#arrow"></use></svg></a></div></div></div></footer>
 <div class="toast" role="status" hidden></div>
 </body>
 </html>
